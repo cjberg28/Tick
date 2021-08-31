@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     private bool isWritingText;
     private IEnumerator coroutineInstance = null;
     private int currentTextIndex = 0;//This is the index for the textList, i.e., which line of text we're on.
+    public GameObject itemSelected = null;
+    private GameObject inventoryOnhand;
+    private GameObject inventory2;
+    private GameObject inventory3;
     #endregion
 
     #region Text Dictionary
@@ -30,6 +34,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inventoryOnhand = GameObject.Find("Item 1 (Onhand)");
+        inventory2 = GameObject.Find("Item 2");
+        inventory3 = GameObject.Find("Item 3");
         gameText = GameObject.Find("Game Text").GetComponent<TextMeshProUGUI>();
         textList = textDict["test"];
         coroutineInstance = WriteText(textList[currentTextIndex]);
@@ -106,4 +113,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(coroutineInstance);
     }
     #endregion
+
+    
+
 }
