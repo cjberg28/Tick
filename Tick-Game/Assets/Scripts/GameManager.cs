@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator coroutineInstance = null;
     private int currentTextIndex = 0;//This is the index for the textList, i.e., which line of text we're on.
     public GameObject itemSelected = null;
+    public GameObject itemToBePickedUp = null;
     private GameObject inventoryOnhand;
     private GameObject inventory2;
     private GameObject inventory3;
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))//And is in text mode???
         {
             if (isWritingText)
             {
@@ -114,6 +115,34 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    
+    public void AddToInventory(GameObject item)//Note that this selectedItem will be the inventory version of the Scene Item, which will be properly attached in each Scene Item's OnMouseDown script.
+    {
+        if (inventoryOnhand.transform.childCount == 0)//If the Onhand slot is empty...
+        {
+            item.transform.SetParent(inventoryOnhand.transform, false);
+            item.SetActive(true);//Make the item visible.
+        }
+        else if (inventory2.transform.childCount == 0)//Otherwise, if item slot 2 is empty...
+        {
+            item.transform.SetParent(inventory2.transform, false);
+            item.SetActive(true);
+        }
+        else if (inventory3.transform.childCount == 0)//Otherwise, if item slot 3 is empty...
+        {
+            item.transform.SetParent(inventory3.transform, false);
+            item.SetActive(true);
+        }
+        else//Otherwise, all inventory slots are taken...
+        {
+            //Would you like to replace an item? Text
+            //Yes/No option.
+
+        }
+    }
+
+    public void PutItemBack()
+    {
+        itemToBePickedUp = null;
+    }
 
 }
