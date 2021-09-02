@@ -14,12 +14,6 @@ public class OnhandItem : MonoBehaviour
         inventoryColor = gameObject.GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
         if (transform.childCount > 0)//If an item is in the Onhand slot...
